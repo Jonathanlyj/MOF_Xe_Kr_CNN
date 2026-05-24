@@ -93,12 +93,12 @@ def parse_args():
     )
     p.add_argument(
         "--grid-path",
-        default="/data/yll6162/mof_cnn/data_mix_all_seq_3_grids",
+        default="./sample_data",
         help="train/ val/ test/ batches",
     )
     p.add_argument(
         "--model-save-dir",
-        default="/data/yll6162/mof_cnn/model",
+        default="./models",
         help="Checkpoints (*.pt)",
     )
     p.add_argument("--output-dir", default="pred", help="Prediction and metrics CSV")

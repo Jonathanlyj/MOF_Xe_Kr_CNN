@@ -44,7 +44,7 @@ TARGET_COLUMNS = {"Xe": "Xe_cm3_per_cm3_value", "Kr": "Kr_cm3_per_cm3_value"}
 PRESSURE_TAGS = ["0p1bar", "0p25bar", "0p5bar", "1bar", "5bar", "10bar"]
 PRESSURE_FEATURES = ["Kr_Fugacity", "Xe_Fugacity"]
 
-DEFAULT_GRID = "/data/yll6162/mof_cnn/data_mix_all_seq_3_grids"
+DEFAULT_GRID = "./sample_data"
 OUTPUT_DIR = "predictions"
 
 

@@ -94,7 +94,7 @@ def parse_args():
     p.add_argument(
         "--model-save-dir",
         type=str,
-        default="/data/yll6162/mof_cnn/model",
+        default="./models",
         help="Directory for *.pt checkpoints",
     )
     p.add_argument(
