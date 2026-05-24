@@ -1,6 +1,6 @@
 """Sample run::
 
-  CUDA_VISIBLE_DEVICES="" python train_gas_ads_model.py \
+  python train_gas_ads_model.py \
     --pressure 1bar \
     --grid-path ./sample_data \
     --load-dir ./sample_data/1bar \
