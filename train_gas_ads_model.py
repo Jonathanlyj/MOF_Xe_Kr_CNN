@@ -28,7 +28,7 @@ from torchvision import transforms
 from torcheval.metrics.functional import r2_score
 
 from model_property_all import (
-    RetNet,
+    ResNet,
     LearningMethod,
     CustomDataset,
     init_weights,
@@ -63,7 +63,7 @@ HYPER = {
 
 
 def parse_args():
-    p = argparse.ArgumentParser(description="Train RetNet gas-adsorption model.")
+    p = argparse.ArgumentParser(description="Train ResNet gas-adsorption model.")
     p.add_argument(
         "--pressure",
         type=str,
@@ -237,7 +237,7 @@ def main():
     )
 
     ch = 3 if grid_type == "concat" else 1
-    net = RetNet(extra_dim=len(property_cols), channel=ch).to(device)
+    net = ResNet(extra_dim=len(property_cols), channel=ch).to(device)
 
     criterion = nn.L1Loss().to(device)
     optimizer = optim.Adam(

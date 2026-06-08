@@ -9,7 +9,7 @@ import torch.nn.functional as F
 from torcheval.metrics.functional import r2_score
 
 
-class RetNet(nn.Module):
+class ResNet(nn.Module):
     def __init__(self, extra_dim=2, channel=1):
         """
         extra_dim: number of features in your 'extras' vector (PLD, LCD, density, etc.)
@@ -113,7 +113,7 @@ class RetNet(nn.Module):
         x4 = self.fc2(x4)
         return x4
 
-class RetNetMultiOutput(nn.Module):
+class ResNetMultiOutput(nn.Module):
     def __init__(self, extra_dim=1, channel=1, num_outputs=6):
         """
         extra_dim: number of features in your 'extras' vector (PLD, LCD, density, etc.)
@@ -204,8 +204,8 @@ class RetNetMultiOutput(nn.Module):
 
 import torch.nn.functional as F
 
-class RetNetSeq(nn.Module):
-    def __init__(self, base_cnn: RetNet, pressure_dim: int, rnn_hidden_dim=64, rnn_type='LSTM', bidirection=False, num_layers=1, dropout_rate=0.3, softplus=False):
+class ResNetSeq(nn.Module):
+    def __init__(self, base_cnn: ResNet, pressure_dim: int, rnn_hidden_dim=64, rnn_type='LSTM', bidirection=False, num_layers=1, dropout_rate=0.3, softplus=False):
         super().__init__()
         self.cnn_encoder = base_cnn
         self.cnn_encoder.fc2 = nn.Identity()  # Remove original output layer

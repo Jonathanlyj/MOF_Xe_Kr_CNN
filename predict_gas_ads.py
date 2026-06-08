@@ -29,8 +29,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 from torcheval.metrics.functional import r2_score
 
-from model_property_all import CustomDataset, LearningMethod, RetNet, load_data_id
-from model_property_all_swin import RetNetSwin
+from model_property_all import CustomDataset, LearningMethod, ResNet, load_data_id
 
 TARGET_COLUMNS = {"Xe": "Xe_cm3_per_cm3_value", "Kr": "Kr_cm3_per_cm3_value"}
 OUTPUT_DIR = "predictions"
@@ -44,7 +43,7 @@ def set_seed(seed: int) -> None:
 
 def _infer_model_type(model_path: str) -> str:
     base = os.path.basename(model_path).lower()
-    return "swin" if "swin" in base else "retnet"
+    return "swin" if "swin" in base else "ResNet"
 
 
 def get_extras_list(
@@ -75,11 +74,7 @@ def model_predict(
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model_type = _infer_model_type(model_path)
     ch = 3 if grid_type == "concat" else 1
-
-    if model_type == "retnet":
-        net = RetNet(extra_dim=2, channel=ch).to(device)
-    else:
-        net = RetNetSwin(extra_dim=2, channel=ch).to(device)
+    net = ResNet(extra_dim=2, channel=ch).to(device)
 
     checkpoint = torch.load(model_path, weights_only=False, map_location=device)
     net.load_state_dict(checkpoint["model_state_dict"])

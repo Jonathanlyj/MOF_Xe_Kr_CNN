@@ -29,9 +29,9 @@ from torchvision import transforms
 from torcheval.metrics.functional import r2_score
 
 from model_property_all import (
-    RetNet,
-    RetNetSeq,
-    RetNetMultiOutput,
+    ResNet,
+    ResNetSeq,
+    ResNetMultiOutput,
     SeqLearningMethod,
     SeqDataset,
     init_weights,
@@ -78,7 +78,7 @@ PRESSURE_FEATURE_COLS = ["Kr_Fugacity", "Xe_Fugacity"]
 
 
 def parse_args():
-    p = argparse.ArgumentParser(description="Train sequence gas-adsorption model (RetNet + seq heads).")
+    p = argparse.ArgumentParser(description="Train sequence gas-adsorption model (ResNet + seq heads).")
     p.add_argument(
         "--target",
         choices=list(TARGET_COLUMNS.keys()),
@@ -357,11 +357,11 @@ def main():
 
     pressure_dim = p_train.shape[2]
     if SEQ_MODEL_TYPE == "rnn":
-        base = RetNet(
+        base = ResNet(
             extra_dim=len(property_cols),
             channel=3 if grid_type == "concat" else 1,
         )
-        net = RetNetSeq(
+        net = ResNetSeq(
             base_cnn=base,
             pressure_dim=pressure_dim,
             rnn_hidden_dim=hyper["rnn_hidden_dim"],
@@ -371,7 +371,7 @@ def main():
             softplus=hyper["softplus"],
         ).to(device)
     else:
-        net = RetNetMultiOutput(
+        net = ResNetMultiOutput(
             extra_dim=2,
             channel=3 if grid_type == "concat" else 1,
             num_outputs=6,

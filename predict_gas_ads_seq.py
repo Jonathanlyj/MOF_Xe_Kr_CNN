@@ -32,9 +32,9 @@ from torchvision import transforms
 from torcheval.metrics.functional import r2_score
 
 from model_property_all import (
-    RetNet,
-    RetNetMultiOutput,
-    RetNetSeq,
+    ResNet,
+    ResNetMultiOutput,
+    ResNetSeq,
     SeqLearningMethod,
     SeqDataset,
 )
@@ -79,7 +79,7 @@ def parse_args():
     p.add_argument(
         "--softplus",
         action="store_true",
-        help="RetNetSeq only: match trained softplus flag.",
+        help="ResNetSeq only: match trained softplus flag.",
     )
     p.add_argument("--num-grids", type=int, default=3)
     p.add_argument("--grid-type", type=str, default="")
@@ -151,14 +151,14 @@ def build_network(
     ch = 3 if grid_type == "concat" else 1
     property_cols_dim = len(["PLD", "LCD"])
     if arch == "multioutput":
-        net = RetNetMultiOutput(
+        net = ResNetMultiOutput(
             extra_dim=2,
             channel=ch,
             num_outputs=6,
         ).to(device)
     else:
-        base = RetNet(extra_dim=property_cols_dim, channel=ch)
-        net = RetNetSeq(
+        base = ResNet(extra_dim=property_cols_dim, channel=ch)
+        net = ResNetSeq(
             base_cnn=base,
             pressure_dim=pressure_dim or 2,
             rnn_hidden_dim=32,
