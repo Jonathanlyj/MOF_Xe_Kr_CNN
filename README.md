@@ -118,3 +118,10 @@ python predict_Xe_sel_seq.py \
 ```
 
 Output CSV contains per-pressure Kr/Xe true and predicted adsorption columns plus `sel_true_<pressure>` and `sel_pred_<pressure>` for each of the six pressure levels.
+
+
+## Developer Team
+
+The code was developed by Youjia Li from the <a href="http://cucis.ece.northwestern.edu/">CUCIS</a> group at the Electrical and Computer Engineering Department at Northwestern University.
+
+Copyright (C) 2026, Northwestern University.
