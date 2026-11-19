@@ -122,6 +122,6 @@ Output CSV contains per-pressure Kr/Xe true and predicted adsorption columns plu
 
 ## Developer Team
 
-The code was developed by Youjia Li from the <a href="http://cucis.ece.northwestern.edu/">CUCIS</a> group at the Electrical and Computer Engineering Department at Northwestern University.
+The code was developed by Youjia Li from the <a href="http://cucis.ece.northwestern.edu/">CUCIS</a> group at the Electrical and Computer Engineering Department and Xiaoyi Zhang from Chemical and Biological Engineering Department at Northwestern University.
 
 Copyright (C) 2026, Northwestern University.
